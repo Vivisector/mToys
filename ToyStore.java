@@ -3,7 +3,6 @@ import java.io.IOException;
 import java.util.PriorityQueue;
 // import java.util.Random;
 
-
 public class ToyStore {
     private PriorityQueue<Toy> toyQueue;
 
@@ -15,21 +14,21 @@ public class ToyStore {
         toyQueue.add(toy);
     }
 
-    public int getRandomToyId() {
-    double randomNumber = Math.random();
-    double cumulativeProbability = 0.0;
-    double[] probabilities = {0.2, 0.2, 0.6};
+    public String getRandomToyName() {
+        double randomNumber = Math.random();
+        double cumulativeProbability = 0.0;
+        double[] probabilities = { 0.2, 0.2, 0.6 };
 
-    for (int i = 0; i < toyQueue.size(); i++) {
-        cumulativeProbability += probabilities[i];
+        for (int i = 0; i < toyQueue.size(); i++) {
+            cumulativeProbability += probabilities[i];
 
-        if (randomNumber <= cumulativeProbability) {
-            return toyQueue.toArray(new Toy[0])[i].getId();
+            if (randomNumber <= cumulativeProbability) {
+                return toyQueue.toArray(new Toy[0])[i].getName();
+            }
         }
-    }
 
-    return toyQueue.peek().getId();
-}
+        return toyQueue.peek().getName();
+    }
 
     public static void main(String[] args) {
         ToyStore toyStore = new ToyStore();
@@ -43,8 +42,8 @@ public class ToyStore {
             FileWriter fileWriter = new FileWriter("output.txt");
             // Вызов метода Get 10 раз и запись результатов в файл
             for (int i = 0; i < 10; i++) {
-                int randomToyId = toyStore.getRandomToyId();
-                fileWriter.write(String.valueOf(randomToyId) + "\n");
+                String randomToyName = toyStore.getRandomToyName();
+                fileWriter.write(randomToyName + "\n");
             }
             fileWriter.close();
         } catch (IOException e) {
