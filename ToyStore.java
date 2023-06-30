@@ -41,7 +41,7 @@ public class ToyStore {
         try {
             FileWriter fileWriter = new FileWriter("output.txt");
             // Вызов метода Get 10 раз и запись результатов в файл
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i < 20; i++) {
                 String randomToyName = toyStore.getRandomToyName();
                 fileWriter.write(randomToyName + "\n");
             }
